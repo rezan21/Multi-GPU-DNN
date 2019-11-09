@@ -1,4 +1,6 @@
 # You must have tensorflow-gpu
+from tensorflow.keras.layers import Dense, Dropout, LSTM
+from tensorflow.keras.models import Sequential
 import tensorflow as tf
 
 # Enable GPU Growth for all GPUs
@@ -13,3 +15,9 @@ if gpus:
     except RuntimeError as e:
         # Memory growth must be set before GPUs have been initialized
         print(e)
+
+
+# Use TF MirroredStrategy API to distribute training across multiple GPUs
+strategy = tf.distribute.MirroredStrategy()
+with strategy.scope():
+    pass
